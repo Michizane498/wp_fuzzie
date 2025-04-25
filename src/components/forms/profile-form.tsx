@@ -14,6 +14,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
 
 type Props = {};
 
@@ -44,19 +46,32 @@ const ProfileForm = (props: Props) => {
           )}
         />
         <FormField
-          disabled={isLoading}
+          disabled={true}
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-lg">Email</FormLabel>
               <FormControl>
-                <Input placeholder="Email" {...field} />
+                <Input placeholder="Email" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        <Button
+          type="submit"
+          className="self-start hover:bg-[#2F006B] hover:text-white"
+        >
+          {isLoading ? (
+            <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Saving
+            </>
+          ) : (
+            "Save User Settings"
+          )}
+        </Button>
       </form>
     </Form>
   );
